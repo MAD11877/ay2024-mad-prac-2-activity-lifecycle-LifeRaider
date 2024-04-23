@@ -9,10 +9,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 //add imports here
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,28 @@ public class MainActivity extends AppCompatActivity {
         // Set the TextViews with the User's name, description and default button message
         tvName.setText(user.name);
         tvDescription.setText(user.description);
-        btnFollow.setText("Follow");
+        if (user.followed){
+            btnFollow.setText("Unfollow");
+        } else {
+            btnFollow.setText("Follow");
+        }
+
+        btnFollow.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (user.followed){
+                    user.followed = false;
+                    btnFollow.setText("Follow");
+                } else {
+                    user.followed = true;
+                    btnFollow.setText("Unfollow");
+                }
+                Log.i(TAG, "Status: " + user.followed);
+            }
+        });
+
+
+
     }
 }
 
