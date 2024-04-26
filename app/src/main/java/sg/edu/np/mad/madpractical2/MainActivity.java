@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "Status: " + user.followed);
             }
         });
-        // Hi
     }
 }
 
